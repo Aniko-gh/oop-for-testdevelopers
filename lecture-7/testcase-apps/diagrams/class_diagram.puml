@@ -1,0 +1,26 @@
+@startuml classdiagram
+title Test Case System
+
+skinparam classAttributeIconSize 0
+
+record TestCaseResult {
+    + succeeded : bool
+    + message : str
+    + result : TestCase[0..*]
+}
+
+record CreateTestCase {
+    + title : str
+    + purpose : str
+    + expected_result : str
+}
+
+class TestCase {
+    + id : UUID
+    + title : str
+    + purpose : str
+    + expected_result : str
+}
+
+
+@enduml
