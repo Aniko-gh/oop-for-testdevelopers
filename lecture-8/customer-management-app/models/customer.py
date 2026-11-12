@@ -11,7 +11,7 @@ class Customer:
     @classmethod
     def create(cls, name: str, email: str, phone: str) -> "Customer":
         return cls(
-            id = str(uuid4()), 
+            id = str(uuid4()),
             name = name,
             email = email,
             phone = phone

@@ -12,9 +12,9 @@ class CustomerDialog:
         print("#### CREATE CUSTOMER ####")
 
         # enter field values
-        name = input("Name: ").strip()
-        email = input("Email: ").strip()
-        phone = input("Phone: ").strip()
+        name = input("Name: ")
+        email = input("Email: ")
+        phone = input("Phone: ")
 
         create_customer_dto = CreateCustomerDto(name, email, phone)
 
@@ -26,7 +26,7 @@ class CustomerDialog:
             print(f"Unable to create customer. {result.error_message}")
         else:
             print(f"Customer was created successfully.")
-            print(f"Customer ID: {result.customer.id}")
+            print(f"Customer ID: {result.customer.id.strip()}")
 
 
     def list_customers(self) -> None:

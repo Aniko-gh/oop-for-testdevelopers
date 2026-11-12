@@ -1,0 +1,5 @@
+Installera testverktyget pytest:
+python -m pip install pytest
+
+Kör alla tester:
+python -m pytest -v
