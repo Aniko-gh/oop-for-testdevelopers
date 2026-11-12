@@ -1,0 +1,23 @@
+@startuml create_customer_activity_diagram
+title Create Customer Diagram
+
+start
+
+: Enter field values \n 'name, email, phone';
+
+: Normalize values;
+
+: Validate values;
+
+if (Valid data?) then (yes)
+    : Create Customer;
+    : Save Customer;
+    : Return Customer;
+    : Show created message \nwith 'Customer ID'; 
+else (no)
+    : Show error message;
+endif
+
+stop
+
+@enduml

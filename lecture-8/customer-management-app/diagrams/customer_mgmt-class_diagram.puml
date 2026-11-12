@@ -1,59 +1,59 @@
-@startuml classdiagram
+@startuml customer_mgmt-class_diagram
 
 skinparam classAttributeIconSize 0
 title Customer Management - Class Diagram
 
 class Customer {
-    + id:str
-    + name:str
-    + email:str
-    + phone:str
+    + id: str
+    + name: str
+    + email: str
+    + phone: str
 
-    + create(name:str, email:str, phone:str) : Customer
+    + create(name: str, email: str, phone: str) : Customer
 }
 
 class CreateCustomerDto {
-    + name:str
-    + email:str
-    + phone:str  
+    + name: str
+    + email: str
+    + phone: str  
 }
 
 class CreateCustomerResult {
-    + succeeded:bool
-    + error_message:str | None
-    + customer:Customer | None
+    + succeeded: bool
+    + error_message: str | None
+    + customer: Customer | None
 }
 
 class GetCustomersResult {
-    + succeeded:bool
-    + error_message:str | None
-    + customers:Customer[0..*] | None
+    + succeeded: bool
+    + error_message: str | None
+    + customers: Customer[0..*] | None
 }
 
 class CustomerRepository {
-    - __customers:Customer[0..*]
-    + add(customer:Customer) : None
-    + get_all() : Customer[0..*]
+    - __customers: Customer[0..*]
+    + add(customer: Customer) : None
+    + get_all(): Customer[0..*]
 }
 
 class CustomerService {
-    - __repository:CustomerRepository
-    + create_customer(create_customer:CreateCustomerDto) : CreateCustomerResult
-    + get_customers() : GetCustomersResult
+    - __repository: CustomerRepository
+    + create_customer(create_customer_dto: CreateCustomerDto) : CreateCustomerResult
+    + get_customers(): GetCustomersResult
 
 }
 
 class CustomerDialog {
-    - __service:CustomerService
-    + create_customer_dialog() : None
-    + list_customers_dialog() : None
-    + show_menu_dialog() : None
+    - __service: CustomerService
+    + create_customer() : None
+    + list_customers() : None
+    + show_menu() : None
 }
 
 class App {
-    - __dialog:CustomerDialog
-    - __service:CustomerService
-    - __repository:CustomerRepository
+    - __dialog: CustomerDialog
+    - __service: CustomerService
+    - __repository: CustomerRepository
     main() : None
 }
 

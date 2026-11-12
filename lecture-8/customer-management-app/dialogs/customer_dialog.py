@@ -7,18 +7,21 @@ class CustomerDialog:
         self.__service:CustomerService = customer_service
     
     
-    def create_customer_dialog(self) -> None:
+    def create_customer(self) -> None:
         print("")
         print("#### CREATE CUSTOMER ####")
 
+        # enter field values
         name = input("Name: ").strip()
         email = input("Email: ").strip()
         phone = input("Phone: ").strip()
 
         create_customer_dto = CreateCustomerDto(name, email, phone)
 
+        # normalize - validate - save - return
         result = self.__service.create_customer(create_customer_dto)
 
+        # display error or success message
         if result.succeeded == False:
             print(f"Unable to create customer. {result.error_message}")
         else:
@@ -26,9 +29,9 @@ class CustomerDialog:
             print(f"Customer ID: {result.customer.id}")
 
 
-    def list_customers_dialog(self) -> None:
+    def list_customers(self) -> None:
         pass
 
 
-    def show_menu_dialog(self) -> None:
-        self.create_customer_dialog()
+    def show_menu(self) -> None:
+        self.create_customer()

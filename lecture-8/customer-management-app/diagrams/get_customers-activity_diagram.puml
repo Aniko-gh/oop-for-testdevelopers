@@ -1,0 +1,19 @@
+@startuml get_customers-activity_diagram
+title Get Customers Diagram
+
+start
+
+:Get customers;
+
+if (No customers found?) then (yes)
+    :Show message\n"No customers found.";
+else (no)
+    while (More customers to display?) is (yes)
+        :Get next customer;
+        :Display customer name\nand email address;
+    endwhile (no)
+endif
+
+stop
+
+@enduml

@@ -8,7 +8,7 @@ customer_dialog = CustomerDialog(customer_service)
 
 
 def main() -> None:
-    customer_dialog.show_menu_dialog()
+    customer_dialog.show_menu()
 
 
 if __name__ == "__main__":

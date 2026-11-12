@@ -9,22 +9,22 @@ class CustomerService:
         self.__repository:CustomerRepository = customer_repository
     
     
-    def create_customer(self, create_customer:CreateCustomerDto) -> CreateCustomerResult:
+    def create_customer(self, create_customer_dto:CreateCustomerDto) -> CreateCustomerResult:
         
         # normalize values
-        normalized_name = create_customer.name.strip()
-        normalized_email = create_customer.email.strip()
-        normalized_phone = create_customer.phone.strip()
+        normalized_name = create_customer_dto.name.strip()
+        normalized_email = create_customer_dto.email.strip()
+        normalized_phone = create_customer_dto.phone.strip()
 
         # validate values
         if not normalized_name:
             return CreateCustomerResult(False, "Customer name is required.", None)
 
         if not normalized_email:
-                    return CreateCustomerResult(False, "Email address is required.", None)
+            return CreateCustomerResult(False, "Email address is required.", None)
 
         if not normalized_phone:
-                    return CreateCustomerResult(False, "Phone number is required.", None)
+            return CreateCustomerResult(False, "Phone number is required.", None)
 
         # create customer
         customer = Customer.create(normalized_name, normalized_email, normalized_phone)
