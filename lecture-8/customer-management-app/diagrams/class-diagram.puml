@@ -1,0 +1,79 @@
+@startuml classdiagram
+
+skinparam classAttributeIconSize 0
+title Customer Management - Class Diagram
+
+class Customer {
+    + id:str
+    + name:str
+    + email:str
+    + phone:str
+
+    + create(name:str, email:str, phone:str) : Customer
+}
+
+class CreateCustomerDto {
+    + name:str
+    + email:str
+    + phone:str  
+}
+
+class CreateCustomerResult {
+    + succeeded:bool
+    + error_message:str | None
+    + customer:Customer | None
+}
+
+class GetCustomersResult {
+    + succeeded:bool
+    + error_message:str | None
+    + customers:Customer[0..*] | None
+}
+
+class CustomerRepository {
+    - __customers:Customer[0..*]
+    + add(customer:Customer) : None
+    + get_all() : Customer[0..*]
+}
+
+class CustomerService {
+    - __repository:CustomerRepository
+    + create_customer(create_customer:CreateCustomerDto) : CreateCustomerResult
+    + get_customers() : GetCustomersResult
+
+}
+
+class CustomerDialog {
+    - __service:CustomerService
+    + create_customer_dialog() : None
+    + list_customers_dialog() : None
+}
+
+class App {
+    - __dialog:CustomerDialog
+    - __service:CustomerService
+    - __repository:CustomerRepository
+    main() : None
+}
+
+App --> "1" CustomerDialog
+App --> "1" CustomerService
+App --> "1" CustomerRepository
+
+CustomerDialog --> "1" CustomerService
+CustomerDialog ..> CreateCustomerDto : skapar
+CustomerDialog ..> CreateCustomerResult : använder
+CustomerDialog ..> GetCustomersResult : använder
+
+CustomerService --> "1" CustomerRepository
+CustomerService ..> CreateCustomerDto
+CustomerService ..> CreateCustomerResult
+CustomerService ..> GetCustomersResult
+CustomerService ..> Customer : skapar
+
+CustomerRepository --> "0..*" Customer
+
+CreateCustomerResult --> "0..1" Customer
+GetCustomersResult --> "0..*" Customer
+
+@enduml

@@ -12,7 +12,7 @@ class ProductDialog:
         print("To create a new product enter following information\n")
 
         product = Product()
-        product.name = required_input("Name")
+        product.name = required_input("Name")    
         product.price = required_input("Price")
 
         result = self.product_service.add_product(product)
