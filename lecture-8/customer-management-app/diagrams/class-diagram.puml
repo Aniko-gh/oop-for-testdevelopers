@@ -47,6 +47,7 @@ class CustomerDialog {
     - __service:CustomerService
     + create_customer_dialog() : None
     + list_customers_dialog() : None
+    + show_menu_dialog() : None
 }
 
 class App {

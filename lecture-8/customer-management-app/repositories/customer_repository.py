@@ -6,7 +6,7 @@ class CustomerRepository:
     
     
     def add(self, customer:Customer) -> None:
-        pass
+        self.__customers.append(customer)
 
     
     def get_all(self) -> list[Customer]: 
