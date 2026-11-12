@@ -37,4 +37,8 @@ class CustomerService:
 
         
     def get_customers(self) -> GetCustomersResult:
-        pass
+
+        # get customers
+        customers = self.__repository.get_all()
+
+        return GetCustomersResult(True, None, customers)

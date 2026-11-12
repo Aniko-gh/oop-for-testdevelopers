@@ -10,4 +10,4 @@ class CustomerRepository:
 
     
     def get_all(self) -> list[Customer]: 
-        pass
+        return self.__customers.copy()

@@ -30,8 +30,23 @@ class CustomerDialog:
 
 
     def list_customers(self) -> None:
-        pass
+        print("")
+        print("#### CUSTOMER LIST ####")
+
+        # get customers
+        result = self.__service.get_customers()
+
+        customers = result.customers
+
+        # display error or success message
+        if not customers:
+            print("No customers found.")
+        else:
+            for customer in customers:
+                print(f"{customer.name} <{customer.email}>")
+
 
 
     def show_menu(self) -> None:
         self.create_customer()
+        self.list_customers()
